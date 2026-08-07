@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Confirmación Spider-Man</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #121827, #38204f);
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 28px;
+      width: min(520px, 90vw);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 20px;
+      font-size: 2rem;
+      color: #ff3d57;
+    }
+
+    .message-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 24px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .images img {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 14px;
+      padding: 14px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #fff;
+      background: #ff3d57;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(255, 61, 87, 0.32);
+    }
+
+    .note {
+      margin-top: 18px;
+      font-size: 0.95rem;
+      color: #d3d3d3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Confirmación de Spider-Man</h1>
+    <div class="message-box" id="mensaje">
+      El sábado vamos a ver Spider-Man.
+    </div>
+    <div class="images">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Spider-Man_%28Tobey_Maguire%29.jpg" alt="Spider-Man" />
+      <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Spider-Man2002Poster.jpg" alt="Spider-Man poster" />
+    </div>
+    <div class="buttons">
+      <button onclick="confirmarInstagram()">Sí, enviar a Instagram</button>
+    </div>
+    <p class="note">Al darle Sí, se abrirá Instagram Direct en otra pestaña con el mensaje listo para pegar.</p>
+  </div>
+
+  <script>
+    const texto = "¡Perfecto! El sábado vamos a ver Spider-Man. Te escribo por Instagram para coordinar los detalles.";
+
+    function confirmarInstagram() {
+      navigator.clipboard.writeText(texto)
+        .then(() => {
+          window.open("https://www.instagram.com/direct/inbox/", "_blank");
+        })
+        .catch(() => {
+          alert("No se pudo copiar automáticamente. Se abrirá Instagram y podrás pegar el mensaje manualmente.");
+          window.open("https://www.instagram.com/direct/inbox/", "_blank");
+        });
+    }
+  </script>
+</body>
+</html>
