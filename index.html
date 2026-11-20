@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mis páginas</title>
+	<style>
+		:root {
+			color-scheme: light;
+			font-family: "Trebuchet MS", sans-serif;
+			background: #f3f6f4;
+			color: #193832;
+		}
+
+		body {
+			min-height: 100vh;
+			margin: 0;
+			display: grid;
+			place-items: center;
+		}
+
+		main {
+			width: min(680px, calc(100% - 40px));
+			padding: 48px 0;
+		}
+
+		h1 {
+			margin: 0 0 24px;
+			font-size: 2rem;
+		}
+
+		nav {
+			display: grid;
+			gap: 12px;
+		}
+
+		a {
+			min-height: 64px;
+			padding: 0 20px;
+			display: flex;
+			align-items: center;
+			border: 1px solid #c9d8d1;
+			border-left: 5px solid #d45a38;
+			border-radius: 6px;
+			background: white;
+			color: inherit;
+			font-size: 1.1rem;
+			font-weight: 700;
+			text-decoration: none;
+		}
+
+		a:hover,
+		a:focus-visible {
+			border-color: #347e68;
+			outline: none;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>Mis páginas</h1>
+		<nav aria-label="Páginas disponibles">
+			<a href="./Pagin.html">Página 1</a>
+			<a href="./pagina2.html">Página 2</a>
+		</nav>
+	</main>
+</body>
+</html>
