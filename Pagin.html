@@ -55,9 +55,17 @@
       animation: mover 2s ease-in-out infinite alternate;
     }
 
-    p {
-      text-align: justify;
-      text-align-last: justify;
+    .texto {
+      width: min(1100px, calc(100% - 40px));
+      margin: 24px auto 0;
+    }
+
+    .texto p {
+      margin: 0 0 14px;
+      font-size: 20px;
+      line-height: 1.5;
+      text-align: left;
+      text-indent: 32px;
     }
 
     @keyframes mover {
@@ -72,27 +80,13 @@
     <img src="Mono.jpg" alt="Mono">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfkvNPcxPBeCg4ElTEWGZqidQ-k1pkm5YYhDu95k40jJvzkSA/viewform?embedded=true" width="640" height="3131" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
   </div>
-  <p style="font-size: 24px; text-align: justify; text-indent: 40px; width: 100%; box-sizing: border-box; margin: 0 0 20px;">
-    La música acompaña nuestros momentos cotidianos.<br>
-    Sus ritmos pueden alegrar, inspirar o tranquilizar.<br>
-    Cada melodía expresa sentimientos únicos.<br>
-    Escucharla nos permite imaginar nuevos mundos.<br>
-  </p>
-  <p style="font-size: 24px; text-align: justify; text-indent: 40px; width: 100%; box-sizing: border-box; margin: 0 0 20px;">
-    Cada canción puede contar una historia especial.<br>
-    Las letras despiertan recuerdos y emociones profundas.<br>
-    A través de ellas podemos compartir experiencias.<br>
-  </p>
-  <p style="font-size: 24px; text-align: justify; text-indent: 40px; width: 100%; box-sizing: border-box; margin: 0 0 20px;">
-    Bailar al ritmo de una melodía llena de energía el cuerpo.<br>
-    Descansar con una canción suave ayuda a relajarse.<br>
-    La música siempre encuentra una forma de acompañarnos.<br>
-  </p>
-  <p style="font-size: 24px; text-align: justify; text-indent: 40px; width: 100%; box-sizing: border-box; margin: 0;">
-    Los instrumentos crean sonidos diferentes y sorprendentes.<br>
-    Cada género musical tiene su propio estilo y carácter.<br>
-    Conocerlos nos invita a descubrir nuevos sonidos.<br>
-  </p>
+  <section class="texto">
+    <p>La música acompaña nuestros momentos cotidianos. Sus ritmos pueden alegrar, inspirar o tranquilizar. Cada melodía expresa sentimientos únicos y nos permite imaginar nuevos mundos.</p>
+    <p>Cada canción puede contar una historia especial. Las letras despiertan recuerdos y emociones profundas; a través de ellas podemos compartir experiencias.</p>
+    <p>Bailar al ritmo de una melodía llena de energía el cuerpo. Descansar con una canción suave ayuda a relajarse. La música siempre encuentra una forma de acompañarnos.</p>
+    <p>Los instrumentos crean sonidos diferentes y sorprendentes. Cada género musical tiene su propio estilo y carácter. Conocerlos nos invita a descubrir nuevos sonidos.</p>
+    <p>La música también une a personas de distintos lugares. Al compartir canciones conocemos nuevas historias, costumbres y formas de expresar lo que sentimos.</p>
+  </section>
   <div style="text-align: center; margin: 20px 0 40px;">
     <a href="./pagina2.html"
        style="display: inline-block; padding: 12px 24px; background-color: #1e90ff;
