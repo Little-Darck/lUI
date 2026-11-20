@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="referrer" content="origin">
+	<title>Página 2</title>
+	<style>
+		body {
+			min-height: 100vh;
+			margin: 0;
+			background: url("MONO1.jpg") center / cover no-repeat fixed;
+		}
+
+		main {
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			color: white;
+			text-align: center;
+			text-shadow: 1px 1px 4px black;
+		}
+
+		.multimedia {
+			display: flex;
+			align-items: stretch;
+			justify-content: center;
+			gap: 20px;
+			width: 90vw;
+			max-width: 1300px;
+			margin: 20px 0;
+		}
+
+		.video,
+		.mapa {
+			width: calc(50% - 10px);
+			height: 450px;
+			border: 0;
+		}
+
+		.video {
+			aspect-ratio: 16 / 9;
+		}
+
+		@media (max-width: 900px) {
+			.multimedia {
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.video,
+			.mapa {
+				width: 100%;
+			}
+		}
+
+		.contadores {
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			display: flex;
+			gap: 20px;
+			z-index: 1000;
+		}
+
+		.contador {
+			min-width: 170px;
+			padding: 12px;
+			border-radius: 10px;
+			background: rgba(0, 0, 0, 0.65);
+		}
+
+		.contador strong {
+			display: block;
+			font-size: 2rem;
+		}
+
+		button {
+			padding: 8px 14px;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<h1>Página 2</h1>
+		<div class="multimedia">
+			<iframe class="video" width="560" height="315" src="https://www.youtube.com/embed/bJTU0gXNaQM?si=Y32J3iBGrZwr7XaD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d63509.93028592362!2d-73.04502395227053!3d5.803215743891726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sco!4v1795198239299!5m2!1ses-419!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" title="Mapa"></iframe>
+		</div>
+		<div class="contadores">
+			<div class="contador">
+				<strong id="contador">0</strong>
+				visitas
+			</div>
+		</div>
+		<a href="https://wa.me/573209508615?text=Hola%20Necesito%20comunicarme%20contigo%2C%20espero%20respondas%20lo%20antes%20posible" target="_blank" rel="noopener noreferrer"><button type="button">Contactar por WhatsApp</button></a>
+		<a href="Pagin.html"><button type="button">Volver a Pagina1</button></a>
+	</main>
+
+	<script>
+		const claveVisitas = "pagina2_visitas";
+		const visitas = Number(localStorage.getItem(claveVisitas) || 0) + 1;
+		localStorage.setItem(claveVisitas, visitas);
+		document.getElementById("contador").textContent = visitas;
+	</script>
+</body>
+</html>
