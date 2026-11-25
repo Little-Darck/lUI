@@ -1,68 +1,773 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mis páginas</title>
-	<style>
-		:root {
-			color-scheme: light;
-			font-family: "Trebuchet MS", sans-serif;
-			background: #f3f6f4;
-			color: #193832;
-		}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Guía introductoria de HTML y desarrollo web">
+  <title>Fundamentos de HTML | Taller Web</title>
+  <style>
+    :root {
+      --green: #39a900;
+      --green-dark: #207d00;
+      --green-light: #eff8e8;
+      --navy: #183b3e;
+      --red: #c0392b;
+      --white: #ffffff;
+      --cream: #f7f8f4;
+      --ink: #263238;
+      --muted: #66756f;
+      --line: #dde5df;
+      --shadow: 0 14px 40px rgba(31, 63, 47, 0.10);
+    }
 
-		body {
-			min-height: 100vh;
-			margin: 0;
-			display: grid;
-			place-items: center;
-		}
+    * {
+      box-sizing: border-box;
+    }
 
-		main {
-			width: min(680px, calc(100% - 40px));
-			padding: 48px 0;
-		}
+    html {
+      scroll-behavior: smooth;
+    }
 
-		h1 {
-			margin: 0 0 24px;
-			font-size: 2rem;
-		}
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.65;
+    }
 
-		nav {
-			display: grid;
-			gap: 12px;
-		}
+    a {
+      color: inherit;
+    }
 
-		a {
-			min-height: 64px;
-			padding: 0 20px;
-			display: flex;
-			align-items: center;
-			border: 1px solid #c9d8d1;
-			border-left: 5px solid #d45a38;
-			border-radius: 6px;
-			background: white;
-			color: inherit;
-			font-size: 1.1rem;
-			font-weight: 700;
-			text-decoration: none;
-		}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid rgba(221, 229, 223, 0.9);
+      backdrop-filter: blur(12px);
+    }
 
-		a:hover,
-		a:focus-visible {
-			border-color: #347e68;
-			outline: none;
-		}
-	</style>
+    .nav {
+      max-width: 1180px;
+      height: 72px;
+      margin: auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--green);
+      color: white;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--green-dark);
+    }
+
+    .hero {
+      max-width: 1180px;
+      min-height: 520px;
+      margin: auto;
+      padding: 68px 24px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 58px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--green);
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 18px 0 22px;
+      font-size: clamp(44px, 7vw, 76px);
+      letter-spacing: -3.5px;
+      color: var(--navy);
+    }
+
+    h1 span {
+      color: var(--green);
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin: 0 0 28px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 2px solid var(--green);
+      border-radius: 8px;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      transition: 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--green-dark);
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 370px;
+      border-radius: 22px;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 85% 15%, rgba(57, 169, 0, 0.16), transparent 24%),
+        var(--navy);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .browser {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: -42px;
+      min-height: 330px;
+      border: 8px solid #e9efeb;
+      border-radius: 12px 12px 0 0;
+      background: white;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+      transform: rotate(-2deg);
+    }
+
+    .browser-bar {
+      height: 38px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 12px;
+      border-bottom: 1px solid var(--line);
+      background: #f8faf8;
+    }
+
+    .browser-bar i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #b5c1ba;
+    }
+
+    .browser-body {
+      padding: 28px;
+    }
+
+    .browser-body h3 {
+      color: var(--red);
+      font-size: 25px;
+    }
+
+    .code-line {
+      height: 8px;
+      margin: 12px 0;
+      border-radius: 20px;
+      background: #dfe7e2;
+    }
+
+    .code-line.green {
+      width: 58%;
+      background: #add18f;
+    }
+
+    .code-line.short {
+      width: 74%;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 82px 24px;
+    }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading h2 {
+      margin: 12px 0 14px;
+      font-size: clamp(32px, 5vw, 48px);
+      color: var(--navy);
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 210px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+      box-shadow: 0 7px 24px rgba(37, 74, 55, 0.05);
+    }
+
+    .card-number {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--navy);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .bands {
+      background: white;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bands-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 82px 24px;
+    }
+
+    .band-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 38px;
+      align-items: start;
+    }
+
+    .tag-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .tag {
+      padding: 14px;
+      border-left: 4px solid var(--green);
+      border-radius: 6px;
+      background: var(--green-light);
+      font-size: 14px;
+    }
+
+    .tag strong {
+      display: block;
+      color: var(--navy);
+    }
+
+    .tag span {
+      color: var(--muted);
+    }
+
+    .code-panel {
+      border-radius: 14px;
+      background: #172426;
+      color: #dfeae4;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .code-panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #99aaa2;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 24px;
+      overflow-x: auto;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .blue { color: #87c9ff; }
+    .yellow { color: #f1d67a; }
+    .green { color: #83d69a; }
+
+    .examples {
+      background: var(--cream);
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .example {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .example h3 {
+      color: var(--navy);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th, td {
+      padding: 13px 16px;
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+
+    th {
+      background: var(--green);
+      color: white;
+    }
+
+    .links-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .link-item:hover {
+      border-color: var(--green);
+      color: var(--green-dark);
+    }
+
+    .hosting {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 82px 24px;
+    }
+
+    .hosting-box {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 40px;
+      align-items: center;
+      padding: 42px;
+      border-radius: 18px;
+      background: var(--navy);
+      color: white;
+    }
+
+    .hosting-box h2 {
+      margin: 10px 0 14px;
+      font-size: clamp(32px, 5vw, 48px);
+    }
+
+    .hosting-box p {
+      color: #cbd8d1;
+    }
+
+    .host-table {
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .host-table table {
+      color: var(--ink);
+    }
+
+    .host-table th {
+      background: #315158;
+    }
+
+    footer {
+      max-width: 1180px;
+      margin: auto;
+      padding: 28px 24px 40px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero,
+      .band-grid,
+      .hosting-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-card {
+        min-height: 330px;
+      }
+
+      .cards,
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav {
+        padding: 0 16px;
+      }
+
+      .brand span:last-child {
+        display: none;
+      }
+
+      .section,
+      .bands-inner,
+      .hosting {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .tag-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hosting-box {
+        padding: 24px 16px;
+      }
+
+      footer {
+        display: block;
+      }
+    }
+  </style>
 </head>
 <body>
-	<main>
-		<h1>Mis páginas</h1>
-		<nav aria-label="Páginas disponibles">
-			<a href="./Pagin.html">Página 1</a>
-			<a href="./pagina2.html">Página 2</a>
-		</nav>
-	</main>
+  <header class="topbar">
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">&lt;/&gt;</span>
+        <span>HTML desde cero</span>
+      </a>
+      <div class="nav-links">
+        <a href="#conceptos">Conceptos</a>
+        <a href="#estructura">Estructura</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a class="button nav-cta" href="#alojamiento">Publicar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Taller de desarrollo web</div>
+        <h1>Aprende a crear con <span>HTML.</span></h1>
+        <p class="hero-copy">
+          Una página web organiza texto, imágenes, enlaces y otros elementos multimedia mediante etiquetas de hipertexto.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#conceptos">Comenzar el taller</a>
+          <a class="button secondary" href="#ejemplos">Ver ejemplos</a>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="Ejemplo visual de código HTML">
+        <div class="browser">
+          <div class="browser-bar">
+            <i></i><i></i><i></i>
+          </div>
+          <div class="browser-body">
+            <h3>¡Hola, mundo!</h3>
+            <div class="code-line green"></div>
+            <div class="code-line"></div>
+            <div class="code-line short"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conceptos">
+      <div class="section-heading">
+        <div class="eyebrow">Conceptos básicos</div>
+        <h2>La base de toda página web</h2>
+        <p>HTML define la estructura y el contenido. CSS determina su apariencia y JavaScript añade interactividad.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="card-number">01</div>
+          <h3>HTML</h3>
+          <p>Lenguaje de etiquetas que organiza textos, imágenes, tablas, enlaces, audio y video.</p>
+        </article>
+        <article class="card">
+          <div class="card-number">02</div>
+          <h3>CSS</h3>
+          <p>Define colores, tamaños, espacios, diseños responsivos y estilos visuales.</p>
+        </article>
+        <article class="card">
+          <div class="card-number">03</div>
+          <h3>JavaScript</h3>
+          <p>Permite crear contenido dinámico e interacción entre el usuario y la página.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bands" id="estructura">
+      <div class="bands-inner">
+        <div class="band-grid">
+          <div>
+            <div class="eyebrow">Estructura</div>
+            <h2>Etiqueta de inicio y cierre</h2>
+            <p>
+              Todo documento HTML comienza con <strong>&lt;html&gt;</strong> y termina con
+              <strong>&lt;/html&gt;</strong>. Se divide en una cabecera <strong>&lt;head&gt;</strong>
+              y un cuerpo <strong>&lt;body&gt;</strong>.
+            </p>
+            <div class="tag-list">
+              <div class="tag"><strong>&lt;head&gt;</strong><span>Información para el navegador</span></div>
+              <div class="tag"><strong>&lt;title&gt;</strong><span>Nombre de la pestaña</span></div>
+              <div class="tag"><strong>&lt;body&gt;</strong><span>Contenido visible</span></div>
+              <div class="tag"><strong>&lt;footer&gt;</strong><span>Pie de página o sección</span></div>
+              <div class="tag"><strong>&lt;h1&gt; – &lt;h6&gt;</strong><span>Títulos y subtítulos</span></div>
+              <div class="tag"><strong>&lt;main&gt;</strong><span>Contenido principal</span></div>
+            </div>
+          </div>
+
+          <div class="code-panel">
+            <div class="code-panel-title">
+              <span>documento.html</span>
+              <span>HTML</span>
+            </div>
+<pre><span class="blue">&lt;html</span> <span class="yellow">lang</span>=<span class="green">"es"</span><span class="blue">&gt;</span>
+  <span class="blue">&lt;head&gt;</span>
+    <span class="blue">&lt;title&gt;</span>Mi primera web<span class="blue">&lt;/title&gt;</span>
+  <span class="blue">&lt;/head&gt;</span>
+
+  <span class="blue">&lt;body&gt;</span>
+    <span class="blue">&lt;h1&gt;</span>¡Hola!<span class="blue">&lt;/h1&gt;</span>
+    <span class="blue">&lt;p&gt;</span>Bienvenido a mi página web.<span class="blue">&lt;/p&gt;</span>
+  <span class="blue">&lt;/body&gt;</span>
+<span class="blue">&lt;/html&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section examples" id="ejemplos">
+      <div class="section-heading">
+        <div class="eyebrow">Práctica</div>
+        <h2>Ejemplos esenciales</h2>
+        <p>Aplicaciones sencillas de las etiquetas estudiadas en el taller.</p>
+      </div>
+
+      <div class="example-grid">
+        <article class="example">
+          <h3>Datos personales</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Campo</th>
+                <th>Información</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Área</td>
+                <td>Sistemas</td>
+              </tr>
+              <tr>
+                <td>Nombre</td>
+                <td>Luis</td>
+              </tr>
+              <tr>
+                <td>Apellido</td>
+                <td>Cardenas</td>
+              </tr>
+              <tr>
+                <td>Ficha</td>
+                <td>3411215</td>
+              </tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="example">
+          <h3>Lista de vínculos</h3>
+          <p>Presiona una opción para conocer más temas:</p>
+          <div class="links-list">
+            <a class="link-item" href="#estructura"><span>HTML básico</span><span>→</span></a>
+            <a class="link-item" href="#conceptos"><span>Contenido y estructura</span><span>→</span></a>
+            <a class="link-item" href="#ejemplos"><span>Apariencia y tablas</span><span>→</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hosting" id="alojamiento">
+      <div class="hosting-box">
+        <div>
+          <div class="eyebrow" style="color:#83d69a">Publicación</div>
+          <h2>Comparte tu sitio web</h2>
+          <p>Sube la página a un servicio gratuito y comparte el enlace con tu instructor y compañeros.</p>
+        </div>
+        <div class="host-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Plataforma</th>
+                <th>Compatibilidad</th>
+                <th>Facilidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Netlify</td>
+                <td>HTML</td>
+                <td>Muy fácil</td>
+              </tr>
+              <tr>
+                <td>GitHub Pages</td>
+                <td>HTML</td>
+                <td>Intermedia</td>
+              </tr>
+              <tr>
+                <td>Cloudflare Pages</td>
+                <td>HTML</td>
+                <td>Intermedia</td>
+              </tr>
+              <tr>
+                <td>Vercel</td>
+                <td>HTML</td>
+                <td>Intermedia</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Taller web — Fundamentos de HTML</span>
+    <span>Noviembre 2026 · Luis Cardenas</span>
+  </footer>
 </body>
 </html>
